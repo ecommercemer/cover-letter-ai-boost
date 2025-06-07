@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,64 +5,47 @@ import { ArrowDown, CheckIcon, UploadIcon, Settings, FileTextIcon, Users, Star }
 import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
-
 const Index = () => {
   const [language, setLanguage] = useState("en");
-
-  const steps = [
-    {
-      icon: UploadIcon,
-      title: "Upload Resume via Telegram",
-      description: "Share your resume and job preferences through our Telegram bot interface."
-    },
-    {
-      icon: Settings,
-      title: "Generate Cover Letter with AI",
-      description: "Our AI analyzes the job posting and creates a personalized German cover letter."
-    },
-    {
-      icon: CheckIcon,
-      title: "We Fill Out the Job Form for You",
-      description: "Automatically complete and submit applications to job platforms on your behalf."
-    },
-    {
-      icon: FileTextIcon,
-      title: "You Receive Reports via Telegram",
-      description: "Get detailed progress reports and updates directly through Telegram notifications."
-    }
-  ];
-
-  const platforms = [
-    "LinkedIn", "StepStone", "Xing", "IranTalent"
-  ];
-
-  const testimonials = [
-    {
-      name: "Sarah M.",
-      role: "Software Engineer",
-      text: "Landed 3 interviews in my first week using this platform. The AI-generated cover letters were perfect for the German job market!",
-      rating: 5
-    },
-    {
-      name: "Ahmad R.",
-      role: "Marketing Manager",
-      text: "Finally, a tool that understands German job requirements. The Telegram integration makes everything so convenient.",
-      rating: 5
-    },
-    {
-      name: "Maria K.",
-      role: "Data Analyst",
-      text: "The automated job applications saved me hours of work. Highly recommended for anyone job hunting in Germany!",
-      rating: 5
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const steps = [{
+    icon: UploadIcon,
+    title: "Upload Resume via Telegram",
+    description: "Share your resume and job preferences through our Telegram bot interface."
+  }, {
+    icon: Settings,
+    title: "Generate Cover Letter with AI",
+    description: "Our AI analyzes the job posting and creates a personalized German cover letter."
+  }, {
+    icon: CheckIcon,
+    title: "We Fill Out the Job Form for You",
+    description: "Automatically complete and submit applications to job platforms on your behalf."
+  }, {
+    icon: FileTextIcon,
+    title: "You Receive Reports via Telegram",
+    description: "Get detailed progress reports and updates directly through Telegram notifications."
+  }];
+  const platforms = ["LinkedIn", "StepStone", "Xing", "IranTalent"];
+  const testimonials = [{
+    name: "Sarah M.",
+    role: "Software Engineer",
+    text: "Landed 3 interviews in my first week using this platform. The AI-generated cover letters were perfect for the German job market!",
+    rating: 5
+  }, {
+    name: "Ahmad R.",
+    role: "Marketing Manager",
+    text: "Finally, a tool that understands German job requirements. The Telegram integration makes everything so convenient.",
+    rating: 5
+  }, {
+    name: "Maria K.",
+    role: "Data Analyst",
+    text: "The automated job applications saved me hours of work. Highly recommended for anyone job hunting in Germany!",
+    rating: 5
+  }];
+  return <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold gradient-bg bg-clip-text text-transparent">
+          <div className="text-2xl font-bold gradient-bg bg-clip-text text-transparent bg-slate-50">
             CoverLetterAI
           </div>
           <div className="flex items-center gap-4">
@@ -115,8 +97,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16">How It Works</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+            {steps.map((step, index) => <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="pt-8 pb-6">
                   <div className="gradient-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <step.icon className="w-8 h-8 text-white" />
@@ -124,8 +105,7 @@ const Index = () => {
                   <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
                   <p className="text-muted-foreground">{step.description}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -138,11 +118,9 @@ const Index = () => {
             We integrate with the most popular job platforms
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            {platforms.map((platform, index) => (
-              <Badge key={index} variant="secondary" className="text-lg py-2 px-4">
+            {platforms.map((platform, index) => <Badge key={index} variant="secondary" className="text-lg py-2 px-4">
                 {platform}
-              </Badge>
-            ))}
+              </Badge>)}
           </div>
         </div>
       </section>
@@ -152,13 +130,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16">What Our Users Say</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+            {testimonials.map((testimonial, index) => <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
                   <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    ))}
+                    {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />)}
                   </div>
                   <p className="text-muted-foreground mb-4">"{testimonial.text}"</p>
                   <div>
@@ -166,8 +141,7 @@ const Index = () => {
                     <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -229,8 +203,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
