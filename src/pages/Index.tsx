@@ -4,52 +4,56 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowDown, CheckIcon, UploadIcon, Settings, FileTextIcon, Users, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from "react";
 
 const Index = () => {
+  const [language, setLanguage] = useState("en");
+
   const steps = [
     {
       icon: UploadIcon,
-      title: "Upload Your CV & Info",
-      description: "Share your resume and job preferences through our Telegram bot or web interface."
+      title: "Upload Resume via Telegram",
+      description: "Share your resume and job preferences through our Telegram bot interface."
     },
     {
       icon: Settings,
-      title: "AI Generates Tailored Cover Letter",
-      description: "Our AI analyzes the job posting and creates a personalized cover letter in your preferred language."
+      title: "Generate Cover Letter with AI",
+      description: "Our AI analyzes the job posting and creates a personalized German cover letter."
     },
     {
       icon: CheckIcon,
-      title: "We Apply on Your Behalf",
-      description: "Automatically submit applications to LinkedIn, StepStone, Xing, and other platforms."
+      title: "We Fill Out the Job Form for You",
+      description: "Automatically complete and submit applications to job platforms on your behalf."
     },
     {
       icon: FileTextIcon,
-      title: "Daily Progress Reports",
-      description: "Get detailed reports on applications sent, responses, and optimization suggestions."
+      title: "You Receive Reports via Telegram",
+      description: "Get detailed progress reports and updates directly through Telegram notifications."
     }
   ];
 
   const platforms = [
-    "LinkedIn", "StepStone", "Xing", "IranTalent", "Indeed", "Monster"
+    "LinkedIn", "StepStone", "Xing", "IranTalent"
   ];
 
   const testimonials = [
     {
       name: "Sarah M.",
       role: "Software Engineer",
-      text: "Landed 3 interviews in my first week using this platform. The AI-generated cover letters were spot-on!",
+      text: "Landed 3 interviews in my first week using this platform. The AI-generated cover letters were perfect for the German job market!",
       rating: 5
     },
     {
       name: "Ahmad R.",
       role: "Marketing Manager",
-      text: "Finally, a tool that understands German job market requirements. Saved me hours of writing.",
+      text: "Finally, a tool that understands German job requirements. The Telegram integration makes everything so convenient.",
       rating: 5
     },
     {
       name: "Maria K.",
       role: "Data Analyst",
-      text: "The Telegram integration makes it so easy to apply to jobs on the go. Highly recommended!",
+      text: "The automated job applications saved me hours of work. Highly recommended for anyone job hunting in Germany!",
       rating: 5
     }
   ];
@@ -62,12 +66,19 @@ const Index = () => {
           <div className="text-2xl font-bold gradient-bg bg-clip-text text-transparent">
             CoverLetterAI
           </div>
-          <div className="flex gap-4">
+          <div className="flex items-center gap-4">
+            <Select value={language} onValueChange={setLanguage}>
+              <SelectTrigger className="w-32">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="en">🇺🇸 English</SelectItem>
+                <SelectItem value="de">🇩🇪 Deutsch</SelectItem>
+                <SelectItem value="fa">🇮🇷 فارسی</SelectItem>
+              </SelectContent>
+            </Select>
             <Link to="/login">
               <Button variant="outline">Login</Button>
-            </Link>
-            <Link to="/login">
-              <Button>Get Started</Button>
             </Link>
           </div>
         </div>
@@ -77,16 +88,18 @@ const Index = () => {
       <section className="hero-gradient text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Create Your Perfect <br />
+            Create Your German <br />
             <span className="text-yellow-300">Cover Letter with AI</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-            From Telegram to Google Docs to Job Platforms – Automated in Minutes
+            From Telegram to Google Docs to Job Sites – Automated for You
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-4">
-              Start on Telegram
-            </Button>
+            <Link to="/login">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-4">
+                Start Now
+              </Button>
+            </Link>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-4">
               View Demo
             </Button>
@@ -120,9 +133,9 @@ const Index = () => {
       {/* Supported Platforms */}
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-8">Supported Job Platforms</h2>
+          <h2 className="text-4xl font-bold mb-8">Platforms Supported</h2>
           <p className="text-xl text-muted-foreground mb-12">
-            We integrate with the most popular job platforms worldwide
+            We integrate with the most popular job platforms
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             {platforms.map((platform, index) => (
@@ -164,11 +177,11 @@ const Index = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Job Search?</h2>
           <p className="text-xl mb-8 text-blue-100">
-            Join thousands of job seekers who've automated their application process
+            Join thousands of job seekers who've automated their German job applications
           </p>
           <Link to="/login">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-4">
-              Start Free Trial
+              Start Now
             </Button>
           </Link>
         </div>
@@ -183,7 +196,7 @@ const Index = () => {
                 CoverLetterAI
               </h3>
               <p className="text-muted-foreground">
-                Automating job applications with AI-powered cover letters.
+                Automating German job applications with AI-powered cover letters.
               </p>
             </div>
             <div>
@@ -195,17 +208,17 @@ const Index = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Support</h4>
+              <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground">Help Center</a></li>
-                <li><a href="#" className="hover:text-foreground">Contact Us</a></li>
-                <li><a href="#" className="hover:text-foreground">API Docs</a></li>
+                <li><Link to="/about" className="hover:text-foreground">About</Link></li>
+                <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+                <li><Link to="/login" className="hover:text-foreground">Login</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground">Privacy Policy</a></li>
+                <li><Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link></li>
                 <li><a href="#" className="hover:text-foreground">Terms of Service</a></li>
                 <li><a href="#" className="hover:text-foreground">Cookie Policy</a></li>
               </ul>
