@@ -1,17 +1,63 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Users, FileText, Zap, TrendingUp, Search, RefreshCw, Download } from "lucide-react";
+import { ArrowLeft, Users, FileText, Zap, TrendingUp, Search, RefreshCw, Download, Bot, Shield, BarChart3 } from "lucide-react";
+import AutoSubmission from "@/components/AutoSubmission";
+import CredentialVault from "@/components/CredentialVault";
+import DailyReports from "@/components/DailyReports";
 
 const Admin = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+
+  const autoSubmissionLogs = [
+    {
+      id: 1,
+      user: "Sarah Mitchell",
+      platform: "LinkedIn",
+      jobTitle: "Frontend Developer",
+      company: "SAP",
+      status: "success",
+      timestamp: "2024-01-15 14:30",
+      tokensUsed: 120
+    },
+    {
+      id: 2,
+      user: "Ahmad Rahman",
+      platform: "StepStone", 
+      jobTitle: "React Developer",
+      company: "Bosch",
+      status: "success",
+      timestamp: "2024-01-15 14:15",
+      tokensUsed: 95
+    },
+    {
+      id: 3,
+      user: "Maria Rodriguez",
+      platform: "LinkedIn",
+      jobTitle: "Software Engineer", 
+      company: "Zalando",
+      status: "failed",
+      timestamp: "2024-01-15 13:45",
+      tokensUsed: 0
+    },
+    {
+      id: 4,
+      user: "Sarah Mitchell",
+      platform: "IranTalent",
+      jobTitle: "Full Stack Developer",
+      company: "BMW",
+      status: "pending",
+      timestamp: "2024-01-15 13:20",
+      tokensUsed: 110
+    }
+  ];
 
   const users = [
     {
@@ -111,6 +157,8 @@ const Admin = () => {
         return "bg-green-100 text-green-800";
       case "failed":
         return "bg-red-100 text-red-800";
+      case "pending":
+        return "bg-yellow-100 text-yellow-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -142,245 +190,178 @@ const Admin = () => {
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
           <p className="text-muted-foreground">
-            Monitor user activity, system performance, and application statistics
+            Monitor user activity, system performance, and automated job submissions
           </p>
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {stats.map((stat, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardContent className="pt-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
-                    <p className="text-2xl font-bold">{stat.value}</p>
-                    <p className={`text-xs ${stat.change.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
-                      {stat.change} from last month
-                    </p>
+        <Tabs defaultValue="overview" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="overview" className="flex items-center gap-2">
+              <BarChart3 className="w-4 h-4" />
+              Overview
+            </TabsTrigger>
+            <TabsTrigger value="auto-submission" className="flex items-center gap-2">
+              <Bot className="w-4 h-4" />
+              Auto Submission
+            </TabsTrigger>
+            <TabsTrigger value="credentials" className="flex items-center gap-2">
+              <Shield className="w-4 h-4" />
+              Credentials
+            </TabsTrigger>
+            <TabsTrigger value="reports" className="flex items-center gap-2">
+              <FileText className="w-4 h-4" />
+              Reports
+            </TabsTrigger>
+            <TabsTrigger value="users" className="flex items-center gap-2">
+              <Users className="w-4 h-4" />
+              Users
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="overview" className="space-y-6">
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {stats.map((stat, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="pt-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                        <p className="text-2xl font-bold">{stat.value}</p>
+                        <p className={`text-xs ${stat.change.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
+                          {stat.change} from last month
+                        </p>
+                      </div>
+                      <div className="bg-primary/10 p-3 rounded-lg">
+                        <stat.icon className={`w-6 h-6 ${stat.color}`} />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Auto Submission Logs */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Recent Auto Submissions</CardTitle>
+                <CardDescription>Latest automated job applications across platforms</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>User</TableHead>
+                      <TableHead>Platform</TableHead>
+                      <TableHead>Job Title</TableHead>
+                      <TableHead>Company</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Tokens</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {autoSubmissionLogs.map((log) => (
+                      <TableRow key={log.id}>
+                        <TableCell>{log.user}</TableCell>
+                        <TableCell>
+                          <Badge variant="outline">{log.platform}</Badge>
+                        </TableCell>
+                        <TableCell>{log.jobTitle}</TableCell>
+                        <TableCell>{log.company}</TableCell>
+                        <TableCell>
+                          <Badge className={getStatusColor(log.status)}>
+                            {log.status}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>{log.tokensUsed}</TableCell>
+                        <TableCell>
+                          <Button variant="outline" size="sm">
+                            {log.status === 'failed' ? 'Retry' : 'View Details'}
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="auto-submission">
+            <AutoSubmission />
+          </TabsContent>
+
+          <TabsContent value="credentials">
+            <CredentialVault />
+          </TabsContent>
+
+          <TabsContent value="reports">
+            <DailyReports />
+          </TabsContent>
+
+          <TabsContent value="users" className="space-y-6">
+            {/* Users Management */}
+            <Card>
+              <CardHeader>
+                <CardTitle>User Management</CardTitle>
+                <CardDescription>Overview of all registered users</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div className="relative flex-1">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Input
+                        placeholder="Search users..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+                    <Select value={statusFilter} onValueChange={setStatusFilter}>
+                      <SelectTrigger className="w-32">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Status</SelectItem>
+                        <SelectItem value="active">Active</SelectItem>
+                        <SelectItem value="inactive">Inactive</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
-                  <div className="bg-primary/10 p-3 rounded-lg">
-                    <stat.icon className={`w-6 h-6 ${stat.color}`} />
+
+                  <div className="space-y-3">
+                    {users.map((user) => (
+                      <div key={user.id} className="flex items-center justify-between p-3 border rounded-lg">
+                        <div>
+                          <p className="font-medium">{user.name}</p>
+                          <p className="text-sm text-muted-foreground">{user.email}</p>
+                          <div className="flex gap-4 mt-1">
+                            <span className="text-xs text-muted-foreground">
+                              {user.applications} applications
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                              {user.tokens} tokens
+                            </span>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <Badge className={getStatusColor(user.status)}>
+                            {user.status}
+                          </Badge>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Last: {user.lastActive}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
-
-        {/* Users Management */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>User Management</CardTitle>
-              <CardDescription>Overview of all registered users</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex gap-4">
-                  <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Search users..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                  <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger className="w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Status</SelectItem>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="inactive">Inactive</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-3">
-                  {users.map((user) => (
-                    <div key={user.id} className="flex items-center justify-between p-3 border rounded-lg">
-                      <div>
-                        <p className="font-medium">{user.name}</p>
-                        <p className="text-sm text-muted-foreground">{user.email}</p>
-                        <div className="flex gap-4 mt-1">
-                          <span className="text-xs text-muted-foreground">
-                            {user.applications} applications
-                          </span>
-                          <span className="text-xs text-muted-foreground">
-                            {user.tokens} tokens
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <Badge className={getStatusColor(user.status)}>
-                          {user.status}
-                        </Badge>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Last: {user.lastActive}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Recent Activity */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
-              <CardDescription>Latest system activities and operations</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {recentActivity.map((activity) => (
-                  <div key={activity.id} className="flex items-start gap-3 p-3 border rounded-lg">
-                    <div className={`w-2 h-2 rounded-full mt-2 ${
-                      activity.status === 'success' ? 'bg-green-500' : 'bg-red-500'
-                    }`} />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">{activity.action}</p>
-                      <p className="text-xs text-muted-foreground">by {activity.user}</p>
-                      <div className="flex justify-between items-center mt-1">
-                        <span className="text-xs text-muted-foreground">
-                          {activity.timestamp}
-                        </span>
-                        {activity.tokens > 0 && (
-                          <Badge variant="outline" className="text-xs">
-                            {activity.tokens} tokens
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* System Logs */}
-        <Card>
-          <CardHeader>
-            <CardTitle>System Operations</CardTitle>
-            <CardDescription>Detailed logs of cover letter generations and applications</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Timestamp</TableHead>
-                  <TableHead>User</TableHead>
-                  <TableHead>Operation</TableHead>
-                  <TableHead>Tokens Used</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>2024-01-15 14:30</TableCell>
-                  <TableCell>sarah@example.com</TableCell>
-                  <TableCell>Cover Letter Generation</TableCell>
-                  <TableCell>120</TableCell>
-                  <TableCell>
-                    <Badge className="bg-green-100 text-green-800">Success</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant="outline" size="sm">View Details</Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>2024-01-15 13:45</TableCell>
-                  <TableCell>ahmad@example.com</TableCell>
-                  <TableCell>Application Submission</TableCell>
-                  <TableCell>0</TableCell>
-                  <TableCell>
-                    <Badge className="bg-green-100 text-green-800">Success</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant="outline" size="sm">View Details</Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>2024-01-15 12:20</TableCell>
-                  <TableCell>maria@example.com</TableCell>
-                  <TableCell>Cover Letter Generation</TableCell>
-                  <TableCell>85</TableCell>
-                  <TableCell>
-                    <Badge className="bg-red-100 text-red-800">Failed</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant="outline" size="sm">Retry</Button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-
-        {/* API Usage Stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>API Usage Breakdown</CardTitle>
-              <CardDescription>Current month usage statistics</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
-                <span>OpenAI GPT-4</span>
-                <div className="text-right">
-                  <p className="font-medium">28,450 tokens</p>
-                  <p className="text-sm text-muted-foreground">62% of total</p>
-                </div>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
-                <span>Google Gemini</span>
-                <div className="text-right">
-                  <p className="font-medium">17,320 tokens</p>
-                  <p className="text-sm text-muted-foreground">38% of total</p>
-                </div>
-              </div>
-              <div className="pt-2 border-t">
-                <div className="flex justify-between items-center">
-                  <span className="font-medium">Total Usage</span>
-                  <span className="font-bold text-lg">45,770 tokens</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Success Metrics</CardTitle>
-              <CardDescription>Platform performance overview</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span>Cover Letter Generation</span>
-                  <span className="font-medium text-green-600">96% success</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Application Submission</span>
-                  <span className="font-medium text-green-600">89% success</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Google Docs Integration</span>
-                  <span className="font-medium text-green-600">94% success</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Platform Auto-Submit</span>
-                  <span className="font-medium text-yellow-600">76% success</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
