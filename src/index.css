@@ -104,3 +104,13 @@
 .hero-gradient {
   background: linear-gradient(135deg, #1C6DD0 0%, #FFB400 100%);
 }
+
+/* Site logo styling - gradient text only, no background */
+.site-logo-text {
+  font-weight: 800;
+  font-size: 2rem;
+  background: linear-gradient(to right, #1C6DD0, #FFB400);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
