@@ -90,16 +90,16 @@ const Dashboard = () => {
       <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link to="/" className="text-2xl font-bold gradient-bg bg-clip-text text-transparent">
-            CoverLetterAI
+            AutoJobPilot
           </Link>
           <div className="flex items-center gap-4">
             <Link to="/reports">
-              <Button variant="ghost">Reports</Button>
+              <Button variant="ghost">Daily Reports</Button>
             </Link>
             <Link to="/settings">
               <Button variant="ghost">
                 <Settings className="w-4 h-4 mr-2" />
-                Settings
+                Auto-Apply Settings
               </Button>
             </Link>
             <Button variant="outline">
@@ -113,9 +113,9 @@ const Dashboard = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Welcome back, Sarah!</h1>
+          <h1 className="text-3xl font-bold mb-2">Welcome back to AutoJobPilot, Sarah!</h1>
           <p className="text-muted-foreground">
-            Here's your job application dashboard. Ready to create more opportunities?
+            Your AI assistant has been working hard. Here's your job application dashboard.
           </p>
         </div>
 
@@ -125,14 +125,14 @@ const Dashboard = () => {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold mb-2">Ready for your next application?</h2>
+                  <h2 className="text-2xl font-bold mb-2">Ready for your next automation?</h2>
                   <p className="text-blue-100">
-                    Create a personalized cover letter in minutes with our AI assistant.
+                    Create a personalized cover letter and let our AI apply to hundreds of jobs.
                   </p>
                 </div>
                 <Link to="/builder">
                   <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
-                    Create New Cover Letter
+                    Start AI Cover Letter
                   </Button>
                 </Link>
               </div>

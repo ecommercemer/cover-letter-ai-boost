@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,8 +6,10 @@ import { ArrowDown, CheckIcon, UploadIcon, Settings, FileTextIcon, Users, Star }
 import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
+
 const Index = () => {
   const [language, setLanguage] = useState("en");
+  
   const steps = [{
     icon: UploadIcon,
     title: "Upload Resume via Telegram",
@@ -24,7 +27,14 @@ const Index = () => {
     title: "You Receive Reports via Telegram",
     description: "Get detailed progress reports and updates directly through Telegram notifications."
   }];
-  const platforms = ["LinkedIn", "StepStone", "Xing", "IranTalent"];
+  
+  const platforms = [
+    { name: "LinkedIn", url: "https://www.linkedin.com" },
+    { name: "StepStone", url: "https://www.stepstone.de" },
+    { name: "Xing", url: "https://www.xing.com" },
+    { name: "IranTalent", url: "https://www.irantalent.com" }
+  ];
+  
   const testimonials = [{
     name: "Sarah M.",
     role: "Software Engineer",
@@ -41,12 +51,21 @@ const Index = () => {
     text: "The automated job applications saved me hours of work. Highly recommended for anyone job hunting in Germany!",
     rating: 5
   }];
+
   return <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold gradient-bg bg-clip-text text-transparent bg-slate-50">
-            CoverLetterAI
+            AutoJobPilot
+          </div>
+          <div className="hidden md:flex items-center gap-6">
+            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+            <Link to="/dashboard" className="hover:text-primary transition-colors">Features</Link>
+            <Link to="/builder" className="hover:text-primary transition-colors">AI Cover Letter</Link>
+            <Link to="/settings" className="hover:text-primary transition-colors">Auto-Apply Settings</Link>
+            <Link to="/reports" className="hover:text-primary transition-colors">Daily Report</Link>
+            <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
           </div>
           <div className="flex items-center gap-4">
             <Select value={language} onValueChange={setLanguage}>
@@ -54,7 +73,7 @@ const Index = () => {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="en">🇺🇸 English</SelectItem>
+                <SelectItem value="en">🇬🇧 English</SelectItem>
                 <SelectItem value="de">🇩🇪 Deutsch</SelectItem>
                 <SelectItem value="fa">🇮🇷 فارسی</SelectItem>
               </SelectContent>
@@ -70,20 +89,20 @@ const Index = () => {
       <section className="hero-gradient text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Create Your German <br />
-            <span className="text-yellow-300">Cover Letter with AI</span>
+            AI-Powered Job Application <br />
+            <span className="text-yellow-300">Automation Platform</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-            From Telegram to Google Docs to Job Sites – Automated for You
+            Apply to hundreds of jobs automatically while you sleep - from LinkedIn to StepStone
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link to="/login">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-4">
-                Start Now
+                Start Auto-Applying
               </Button>
             </Link>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-4">
-              View Demo
+              Watch Demo
             </Button>
           </div>
           <div className="animate-bounce">
@@ -92,10 +111,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* Smart Job Flow */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16">How It Works</h2>
+          <h2 className="text-4xl font-bold text-center mb-16">🧠 Smart Job Flow</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="pt-8 pb-6">
@@ -113,14 +132,24 @@ const Index = () => {
       {/* Supported Platforms */}
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-8">Platforms Supported</h2>
+          <h2 className="text-4xl font-bold mb-8">Connected Job Platforms</h2>
           <p className="text-xl text-muted-foreground mb-12">
-            We integrate with the most popular job platforms
+            We automatically apply to jobs on the most popular platforms
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            {platforms.map((platform, index) => <Badge key={index} variant="secondary" className="text-lg py-2 px-4">
-                {platform}
-              </Badge>)}
+            {platforms.map((platform, index) => (
+              <a 
+                key={index} 
+                href={platform.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:scale-105 transition-transform"
+              >
+                <Badge variant="secondary" className="text-lg py-2 px-4 cursor-pointer hover:bg-primary hover:text-primary-foreground">
+                  {platform.name}
+                </Badge>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -149,13 +178,13 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-20 gradient-bg text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Job Search?</h2>
+          <h2 className="text-4xl font-bold mb-6">Ready to Automate Your Job Search?</h2>
           <p className="text-xl mb-8 text-blue-100">
-            Join thousands of job seekers who've automated their German job applications
+            Join thousands who've automated their job applications with AI
           </p>
           <Link to="/login">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-4">
-              Start Now
+              Start Auto-Applying Now
             </Button>
           </Link>
         </div>
@@ -167,22 +196,22 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-2xl font-bold gradient-bg bg-clip-text text-transparent mb-4">
-                CoverLetterAI
+                AutoJobPilot
               </h3>
               <p className="text-muted-foreground">
-                Automating German job applications with AI-powered cover letters.
+                AI-powered job application automation for the modern job seeker.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Product</h4>
+              <h4 className="font-semibold mb-4">Features</h4>
               <ul className="space-y-2 text-muted-foreground">
                 <li><Link to="/dashboard" className="hover:text-foreground">Dashboard</Link></li>
-                <li><Link to="/builder" className="hover:text-foreground">Cover Letter Builder</Link></li>
-                <li><Link to="/reports" className="hover:text-foreground">Reports</Link></li>
+                <li><Link to="/builder" className="hover:text-foreground">AI Cover Letter</Link></li>
+                <li><Link to="/reports" className="hover:text-foreground">Daily Reports</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Company</h4>
+              <h4 className="font-semibold mb-4">Platform</h4>
               <ul className="space-y-2 text-muted-foreground">
                 <li><Link to="/about" className="hover:text-foreground">About</Link></li>
                 <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
@@ -199,10 +228,11 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 CoverLetterAI. All rights reserved.</p>
+            <p>&copy; 2024 AutoJobPilot. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>;
 };
+
 export default Index;
