@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,10 +5,8 @@ import { ArrowDown, CheckIcon, UploadIcon, Settings, FileTextIcon, Users, Star }
 import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
-
 const Index = () => {
   const [language, setLanguage] = useState("en");
-  
   const steps = [{
     icon: UploadIcon,
     title: "Upload Resume via Telegram",
@@ -27,14 +24,19 @@ const Index = () => {
     title: "You Receive Reports via Telegram",
     description: "Get detailed progress reports and updates directly through Telegram notifications."
   }];
-  
-  const platforms = [
-    { name: "LinkedIn", url: "https://www.linkedin.com" },
-    { name: "StepStone", url: "https://www.stepstone.de" },
-    { name: "Xing", url: "https://www.xing.com" },
-    { name: "IranTalent", url: "https://www.irantalent.com" }
-  ];
-  
+  const platforms = [{
+    name: "LinkedIn",
+    url: "https://www.linkedin.com"
+  }, {
+    name: "StepStone",
+    url: "https://www.stepstone.de"
+  }, {
+    name: "Xing",
+    url: "https://www.xing.com"
+  }, {
+    name: "IranTalent",
+    url: "https://www.irantalent.com"
+  }];
   const testimonials = [{
     name: "Sarah M.",
     role: "Software Engineer",
@@ -51,12 +53,11 @@ const Index = () => {
     text: "The automated job applications saved me hours of work. Highly recommended for anyone job hunting in Germany!",
     rating: 5
   }];
-
   return <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold gradient-bg bg-clip-text text-transparent bg-slate-50">
+          <div className="text-2xl font-bold gradient-bg bg-clip-text text-transparent bg-slate-500">
             AutoJobPilot
           </div>
           <div className="hidden md:flex items-center gap-6">
@@ -137,19 +138,11 @@ const Index = () => {
             We automatically apply to jobs on the most popular platforms
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            {platforms.map((platform, index) => (
-              <a 
-                key={index} 
-                href={platform.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:scale-105 transition-transform"
-              >
+            {platforms.map((platform, index) => <a key={index} href={platform.url} target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
                 <Badge variant="secondary" className="text-lg py-2 px-4 cursor-pointer hover:bg-primary hover:text-primary-foreground">
                   {platform.name}
                 </Badge>
-              </a>
-            ))}
+              </a>)}
           </div>
         </div>
       </section>
@@ -234,5 +227,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;
