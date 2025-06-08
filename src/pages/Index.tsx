@@ -1,8 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowDown, CheckIcon, UploadIcon, Settings, FileTextIcon, Users, Star } from "lucide-react";
+import { ArrowDown, CheckIcon, UploadIcon, Settings, FileTextIcon, Users, Star, Bot, BarChart3, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
@@ -19,6 +18,29 @@ const Index = () => {
     i18n.changeLanguage(newLanguage);
     localStorage.setItem('language', newLanguage);
   };
+
+  const features = [
+    {
+      icon: Bot,
+      title: t('features.telegramBot.title'),
+      description: t('features.telegramBot.description')
+    },
+    {
+      icon: FileTextIcon,
+      title: t('features.aiCoverLetter.title'),
+      description: t('features.aiCoverLetter.description')
+    },
+    {
+      icon: Settings,
+      title: t('features.automation.title'),
+      description: t('features.automation.description')
+    },
+    {
+      icon: BarChart3,
+      title: t('features.analytics.title'),
+      description: t('features.analytics.description')
+    }
+  ];
 
   const steps = [{
     icon: UploadIcon,
@@ -79,10 +101,10 @@ const Index = () => {
           </div>
           <div className="hidden md:flex items-center gap-6">
             <Link to="/" className="hover:text-primary transition-colors">{t('nav.home')}</Link>
-            <Link to="/dashboard" className="hover:text-primary transition-colors">{t('nav.features')}</Link>
             <Link to="/builder" className="hover:text-primary transition-colors">{t('nav.aiCoverLetter')}</Link>
             <Link to="/settings" className="hover:text-primary transition-colors">{t('nav.autoApplySettings')}</Link>
             <Link to="/reports" className="hover:text-primary transition-colors">{t('nav.dailyReport')}</Link>
+            <Link to="/admin" className="hover:text-primary transition-colors">{t('nav.admin')}</Link>
             <Link to="/contact" className="hover:text-primary transition-colors">{t('nav.contact')}</Link>
           </div>
           <div className="flex items-center gap-4">
@@ -130,6 +152,26 @@ const Index = () => {
           </div>
           <div className="animate-bounce">
             <ArrowDown className="mx-auto w-8 h-8 text-blue-200" />
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16">{t('features.title')}</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                <CardContent className="pt-8 pb-6">
+                  <div className="gradient-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

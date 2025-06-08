@@ -12,7 +12,8 @@ const resources = {
         autoApplySettings: "Auto-Apply Settings",
         dailyReport: "Daily Report",
         contact: "Contact",
-        login: "Login"
+        login: "Login",
+        admin: "Admin"
       },
       hero: {
         title: "AI-Powered Job Application",
@@ -21,55 +22,53 @@ const resources = {
         startButton: "Start Auto-Applying",
         watchDemo: "Watch Demo"
       },
-      smartFlow: {
-        title: "🧠 Smart Job Flow",
-        step1: {
-          title: "Upload Resume via Telegram",
-          description: "Share your resume and job preferences through our Telegram bot interface."
+      features: {
+        title: "Complete Automation Suite",
+        telegramBot: {
+          title: "Telegram Bot Assistant",
+          description: "Collect all application data through our smart Telegram bot interface."
         },
-        step2: {
-          title: "Generate Cover Letter with AI",
-          description: "Our AI analyzes the job posting and creates a personalized German cover letter."
+        aiCoverLetter: {
+          title: "AI Cover Letter Generator",
+          description: "Generate DIN 5008 compliant cover letters using ChatGPT and Gemini."
         },
-        step3: {
-          title: "We Fill Out the Job Form for You",
-          description: "Automatically complete and submit applications to job platforms on your behalf."
+        automation: {
+          title: "Auto-Apply to Jobs",
+          description: "Automatically submit applications to StepStone, LinkedIn, Xing, and more."
         },
-        step4: {
-          title: "You Receive Reports via Telegram",
-          description: "Get detailed progress reports and updates directly through Telegram notifications."
+        analytics: {
+          title: "Analytics & Reports",
+          description: "Track applications, monitor success rates, and receive daily reports."
         }
       },
-      platforms: {
-        title: "Connected Job Platforms",
-        subtitle: "We automatically apply to jobs on the most popular platforms"
+      admin: {
+        title: "Admin Dashboard",
+        subtitle: "Monitor system performance and user analytics",
+        stats: {
+          totalUsers: "Total Users",
+          coverLetters: "Cover Letters Generated",
+          applications: "Applications Sent",
+          tokenUsage: "Token Usage",
+          successRate: "Success Rate"
+        }
       },
-      testimonials: {
-        title: "What Our Users Say",
-        sarah: "Landed 3 interviews in my first week using this platform. The AI-generated cover letters were perfect for the German job market!",
-        ahmad: "Finally, a tool that understands German job requirements. The Telegram integration makes everything so convenient.",
-        maria: "The automated job applications saved me hours of work. Highly recommended for anyone job hunting in Germany!"
+      telegram: {
+        title: "Telegram Bot Setup",
+        subtitle: "Configure your Telegram bot integration",
+        status: "Bot Status",
+        token: "Bot Token",
+        webhook: "Webhook URL",
+        commands: "Available Commands"
       },
-      cta: {
-        title: "Ready to Automate Your Job Search?",
-        subtitle: "Join thousands who've automated their job applications with AI",
-        button: "Start Auto-Applying Now"
-      },
-      footer: {
-        description: "AI-powered job application automation for the modern job seeker.",
-        features: "Features",
-        platform: "Platform",
-        legal: "Legal",
-        about: "About",
-        privacy: "Privacy Policy",
-        terms: "Terms of Service",
-        cookies: "Cookie Policy",
-        rights: "All rights reserved."
-      },
-      demo: {
-        title: "AutoJobPilot Demo",
-        subtitle: "See how our AI-powered automation works",
-        close: "Close"
+      automation: {
+        title: "Job Platform Settings",
+        subtitle: "Configure credentials for automatic job applications",
+        platforms: {
+          linkedin: "LinkedIn",
+          stepstone: "StepStone",
+          xing: "Xing",
+          irantalent: "IranTalent"
+        }
       }
     }
   },
@@ -82,7 +81,8 @@ const resources = {
         autoApplySettings: "Auto-Bewerbung Einstellungen",
         dailyReport: "Täglicher Bericht",
         contact: "Kontakt",
-        login: "Anmelden"
+        login: "Anmelden",
+        admin: "Admin"
       },
       hero: {
         title: "KI-gestützte Stellenbewerbung",
@@ -91,55 +91,35 @@ const resources = {
         startButton: "Auto-Bewerbung starten",
         watchDemo: "Demo ansehen"
       },
-      smartFlow: {
-        title: "🧠 Intelligenter Job-Ablauf",
-        step1: {
-          title: "Lebenslauf via Telegram hochladen",
-          description: "Teilen Sie Ihren Lebenslauf und Jobpräferenzen über unsere Telegram Bot-Schnittstelle."
+      features: {
+        title: "Komplette Automatisierungs-Suite",
+        telegramBot: {
+          title: "Telegram Bot Assistent",
+          description: "Sammeln Sie alle Bewerbungsdaten über unsere intelligente Telegram Bot-Schnittstelle."
         },
-        step2: {
-          title: "Anschreiben mit KI generieren",
-          description: "Unsere KI analysiert die Stellenausschreibung und erstellt ein personalisiertes deutsches Anschreiben."
+        aiCoverLetter: {
+          title: "KI Anschreiben Generator",
+          description: "Erstellen Sie DIN 5008 konforme Anschreiben mit ChatGPT und Gemini."
         },
-        step3: {
-          title: "Wir füllen das Bewerbungsformular für Sie aus",
-          description: "Automatisches Ausfüllen und Einreichen von Bewerbungen auf Job-Plattformen in Ihrem Namen."
+        automation: {
+          title: "Auto-Bewerbung",
+          description: "Automatisches Einreichen von Bewerbungen bei StepStone, LinkedIn, Xing und mehr."
         },
-        step4: {
-          title: "Sie erhalten Berichte via Telegram",
-          description: "Erhalten Sie detaillierte Fortschrittsberichte und Updates direkt über Telegram-Benachrichtigungen."
+        analytics: {
+          title: "Analytics & Berichte",
+          description: "Verfolgen Sie Bewerbungen, überwachen Sie Erfolgsraten und erhalten Sie tägliche Berichte."
         }
       },
-      platforms: {
-        title: "Verbundene Job-Plattformen",
-        subtitle: "Wir bewerben uns automatisch auf Jobs auf den beliebtesten Plattformen"
-      },
-      testimonials: {
-        title: "Was unsere Nutzer sagen",
-        sarah: "Habe 3 Vorstellungsgespräche in meiner ersten Woche mit dieser Plattform erhalten. Die KI-generierten Anschreiben waren perfekt für den deutschen Arbeitsmarkt!",
-        ahmad: "Endlich ein Tool, das deutsche Jobanforderungen versteht. Die Telegram-Integration macht alles so bequem.",
-        maria: "Die automatisierten Jobbewerbungen haben mir Stunden Arbeit erspart. Sehr empfehlenswert für alle, die in Deutschland nach Jobs suchen!"
-      },
-      cta: {
-        title: "Bereit, Ihre Jobsuche zu automatisieren?",
-        subtitle: "Schließen Sie sich Tausenden an, die ihre Jobbewerbungen mit KI automatisiert haben",
-        button: "Jetzt Auto-Bewerbung starten"
-      },
-      footer: {
-        description: "KI-gestützte Jobbewerungsautomatisierung für den modernen Jobsuchenden.",
-        features: "Funktionen",
-        platform: "Plattform",
-        legal: "Rechtliches",
-        about: "Über uns",
-        privacy: "Datenschutzrichtlinie",
-        terms: "Nutzungsbedingungen",
-        cookies: "Cookie-Richtlinie",
-        rights: "Alle Rechte vorbehalten."
-      },
-      demo: {
-        title: "AutoJobPilot Demo",
-        subtitle: "Sehen Sie, wie unsere KI-gestützte Automatisierung funktioniert",
-        close: "Schließen"
+      admin: {
+        title: "Admin Dashboard",
+        subtitle: "Systemleistung und Benutzeranalysen überwachen",
+        stats: {
+          totalUsers: "Gesamtnutzer",
+          coverLetters: "Generierte Anschreiben",
+          applications: "Gesendete Bewerbungen",
+          tokenUsage: "Token-Verbrauch",
+          successRate: "Erfolgsrate"
+        }
       }
     }
   },
@@ -152,7 +132,8 @@ const resources = {
         autoApplySettings: "تنظیمات درخواست خودکار",
         dailyReport: "گزارش روزانه",
         contact: "تماس",
-        login: "ورود"
+        login: "ورود",
+        admin: "مدیریت"
       },
       hero: {
         title: "پلتفرم درخواست شغل",
@@ -161,55 +142,24 @@ const resources = {
         startButton: "شروع درخواست خودکار",
         watchDemo: "مشاهده دمو"
       },
-      smartFlow: {
-        title: "🧠 جریان هوشمند شغل",
-        step1: {
-          title: "آپلود رزومه از طریق تلگرام",
-          description: "رزومه و ترجیحات شغلی خود را از طریق ربات تلگرام ما به اشتراک بگذارید."
+      features: {
+        title: "مجموعه کامل اتوماسیون",
+        telegramBot: {
+          title: "دستیار ربات تلگرام",
+          description: "جمع‌آوری تمام داده‌های درخواست از طریق رابط هوشمند ربات تلگرام ما."
         },
-        step2: {
-          title: "تولید نامه انگیزشی با هوش مصنوعی",
-          description: "هوش مصنوعی ما آگهی شغلی را تجزیه و تحلیل کرده و نامه انگیزشی آلمانی شخصی‌سازی شده ایجاد می‌کند."
+        aiCoverLetter: {
+          title: "تولیدکننده نامه انگیزشی هوشمند",
+          description: "تولید نامه‌های انگیزشی مطابق با استاندارد DIN 5008 با استفاده از ChatGPT و Gemini."
         },
-        step3: {
-          title: "ما فرم شغلی را برای شما پر می‌کنیم",
-          description: "تکمیل و ارسال خودکار درخواست‌ها به پلتفرم‌های شغلی از طرف شما."
+        automation: {
+          title: "درخواست خودکار شغل",
+          description: "ارسال خودکار درخواست‌ها به StepStone، LinkedIn، Xing و بیشتر."
         },
-        step4: {
-          title: "گزارش‌ها را از طریق تلگرام دریافت کنید",
-          description: "گزارش‌های پیشرفت دقیق و به‌روزرسانی‌ها را مستقیماً از طریق اعلان‌های تلگرام دریافت کنید."
+        analytics: {
+          title: "تحلیل و گزارش",
+          description: "پیگیری درخواست‌ها، نظارت بر نرخ موفقیت و دریافت گزارش‌های روزانه."
         }
-      },
-      platforms: {
-        title: "پلتفرم‌های شغلی متصل",
-        subtitle: "ما به طور خودکار به مشاغل در محبوب‌ترین پلتفرم‌ها درخواست می‌دهیم"
-      },
-      testimonials: {
-        title: "نظرات کاربران ما",
-        sarah: "در اولین هفته استفاده از این پلتفرم 3 مصاحبه کاری کسب کردم. نامه‌های انگیزشی تولید شده توسط هوش مصنوعی برای بازار کار آلمان عالی بودند!",
-        ahmad: "بالاخره ابزاری که نیازهای شغلی آلمان را درک می‌کند. ادغام تلگرام همه چیز را بسیار راحت می‌کند.",
-        maria: "درخواست‌های شغلی خودکار ساعت‌ها وقت من را صرفه‌جویی کرد. به شدت برای هر کسی که در آلمان به دنبال کار است توصیه می‌شود!"
-      },
-      cta: {
-        title: "آماده خودکارسازی جستجوی شغل هستید؟",
-        subtitle: "به هزاران نفری بپیوندید که درخواست‌های شغلی خود را با هوش مصنوعی خودکار کرده‌اند",
-        button: "اکنون درخواست خودکار را شروع کنید"
-      },
-      footer: {
-        description: "اتوماسیون درخواست شغل مبتنی بر هوش مصنوعی برای جویندگان کار مدرن.",
-        features: "ویژگی‌ها",
-        platform: "پلتفرم",
-        legal: "حقوقی",
-        about: "درباره ما",
-        privacy: "سیاست حریم خصوصی",
-        terms: "شرایط خدمات",
-        cookies: "سیاست کوکی",
-        rights: "تمام حقوق محفوظ است."
-      },
-      demo: {
-        title: "دمو AutoJobPilot",
-        subtitle: "ببینید اتوماسیون مبتنی بر هوش مصنوعی ما چگونه کار می‌کند",
-        close: "بستن"
       }
     }
   }
